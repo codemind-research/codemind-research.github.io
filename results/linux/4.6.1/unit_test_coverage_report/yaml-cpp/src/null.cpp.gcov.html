@@ -37,12 +37,21 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2024-01-24 16:32:37</td>
+            <td class="headerValue">2024-03-20 10:47:07</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
             <td class="headerCovTableEntry">1</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryMed">80.0 %</td>
           </tr>
           <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -58,18 +67,20 @@
     </tr>
     <tr>
       <td>
-<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>            : #include &quot;yaml-cpp/null.h&quot;</a>
-<a name="2"><span class="lineNum">       2 </span>            : </a>
-<a name="3"><span class="lineNum">       3 </span>            : namespace YAML {</a>
-<a name="4"><span class="lineNum">       4 </span>            : _Null Null;</a>
-<a name="5"><span class="lineNum">       5 </span>            : </a>
-<a name="6"><span class="lineNum">       6 </span><span class="lineCov">       2896 : bool IsNullString(const std::string&amp; str) {</span></a>
-<a name="7"><span class="lineNum">       7 </span><span class="lineCov">       5785 :   return str.empty() || str == &quot;~&quot; || str == &quot;null&quot; || str == &quot;Null&quot; ||</span></a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineCov">       5785 :          str == &quot;NULL&quot;;</span></a>
-<a name="9"><span class="lineNum">       9 </span>            : }</a>
-<a name="10"><span class="lineNum">      10 </span>            : }  // namespace YAML</a>
+<a name="1"><span class="lineNum">       1 </span>                :            : #include &quot;yaml-cpp/null.h&quot;</a>
+<a name="2"><span class="lineNum">       2 </span>                :            : </a>
+<a name="3"><span class="lineNum">       3 </span>                :            : namespace YAML {</a>
+<a name="4"><span class="lineNum">       4 </span>                :            : _Null Null;</a>
+<a name="5"><span class="lineNum">       5 </span>                :            : </a>
+<a name="6"><span class="lineNum">       6 </span>                :<span class="lineCov">       2896 : bool IsNullString(const std::string&amp; str) {</span></a>
+<a name="7"><span class="lineNum">       7 </span>  [<span class="branchCov" title="Branch 0 was taken 2895 times"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchCov" title="Branch 2 was taken 2894 times"> + </span><span class="branchCov" title="Branch 3 was taken 1 time"> + </span> :<span class="lineCov">       5785 :   return str.empty() || str == &quot;~&quot; || str == &quot;null&quot; || str == &quot;Null&quot; ||</span></a>
+<span class="lineNum">         </span><span class="branchCov" title="Branch 4 was taken 2889 times"> + </span><span class="branchCov" title="Branch 5 was taken 5 times"> + </span><span class="branchCov" title="Branch 6 was taken 2889 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span> 
+<span class="lineNum">         </span>            <span class="branchCov" title="Branch 9 was taken 2889 times"> + </span>]
+<a name="8"><span class="lineNum">       8 </span>                :<span class="lineCov">       5785 :          str == &quot;NULL&quot;;</span></a>
+<a name="9"><span class="lineNum">       9 </span>                :            : }</a>
+<a name="10"><span class="lineNum">      10 </span>                :            : }  // namespace YAML</a>
 </pre>
       </td>
     </tr>

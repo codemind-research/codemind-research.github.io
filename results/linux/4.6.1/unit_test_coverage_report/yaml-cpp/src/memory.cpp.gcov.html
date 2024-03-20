@@ -37,12 +37,21 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2024-01-24 16:32:37</td>
+            <td class="headerValue">2024-03-20 10:47:07</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">3</td>
             <td class="headerCovTableEntry">3</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryLo">60.0 %</td>
           </tr>
           <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -58,34 +67,35 @@
     </tr>
     <tr>
       <td>
-<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>            : #include &quot;yaml-cpp/node/detail/memory.h&quot;</a>
-<a name="2"><span class="lineNum">       2 </span>            : #include &quot;yaml-cpp/node/detail/node.h&quot;  // IWYU pragma: keep</a>
-<a name="3"><span class="lineNum">       3 </span>            : #include &quot;yaml-cpp/node/ptr.h&quot;</a>
-<a name="4"><span class="lineNum">       4 </span>            : </a>
-<a name="5"><span class="lineNum">       5 </span>            : namespace YAML {</a>
-<a name="6"><span class="lineNum">       6 </span>            : namespace detail {</a>
-<a name="7"><span class="lineNum">       7 </span>            : </a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineCov">        268 : void memory_holder::merge(memory_holder&amp; rhs) {</span></a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineCov">        268 :   if (m_pMemory == rhs.m_pMemory)</span></a>
-<a name="10"><span class="lineNum">      10 </span><span class="lineCov">         18 :     return;</span></a>
-<a name="11"><span class="lineNum">      11 </span>            : </a>
-<a name="12"><span class="lineNum">      12 </span><span class="lineCov">        250 :   m_pMemory-&gt;merge(*rhs.m_pMemory);</span></a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineCov">        250 :   rhs.m_pMemory = m_pMemory;</span></a>
-<a name="14"><span class="lineNum">      14 </span>            : }</a>
-<a name="15"><span class="lineNum">      15 </span>            : </a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineCov">       1272 : node&amp; memory::create_node() {</span></a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineCov">       1272 :   shared_node pNode(new node);</span></a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">       1272 :   m_nodes.insert(pNode);</span></a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineCov">       2544 :   return *pNode;</span></a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">       1272 : }</span></a>
-<a name="21"><span class="lineNum">      21 </span>            : </a>
-<a name="22"><span class="lineNum">      22 </span><span class="lineCov">        250 : void memory::merge(const memory&amp; rhs) {</span></a>
-<a name="23"><span class="lineNum">      23 </span><span class="lineCov">        250 :   m_nodes.insert(rhs.m_nodes.begin(), rhs.m_nodes.end());</span></a>
-<a name="24"><span class="lineNum">      24 </span><span class="lineCov">        250 : }</span></a>
-<a name="25"><span class="lineNum">      25 </span>            : }  // namespace detail</a>
-<a name="26"><span class="lineNum">      26 </span>            : }  // namespace YAML</a>
+<a name="1"><span class="lineNum">       1 </span>                :            : #include &quot;yaml-cpp/node/detail/memory.h&quot;</a>
+<a name="2"><span class="lineNum">       2 </span>                :            : #include &quot;yaml-cpp/node/detail/node.h&quot;  // IWYU pragma: keep</a>
+<a name="3"><span class="lineNum">       3 </span>                :            : #include &quot;yaml-cpp/node/ptr.h&quot;</a>
+<a name="4"><span class="lineNum">       4 </span>                :            : </a>
+<a name="5"><span class="lineNum">       5 </span>                :            : namespace YAML {</a>
+<a name="6"><span class="lineNum">       6 </span>                :            : namespace detail {</a>
+<a name="7"><span class="lineNum">       7 </span>                :            : </a>
+<a name="8"><span class="lineNum">       8 </span>                :<span class="lineCov">        268 : void memory_holder::merge(memory_holder&amp; rhs) {</span></a>
+<a name="9"><span class="lineNum">       9 </span>        [<span class="branchCov" title="Branch 0 was taken 18 times"> + </span><span class="branchCov" title="Branch 1 was taken 250 times"> + </span>]:<span class="lineCov">        268 :   if (m_pMemory == rhs.m_pMemory)</span></a>
+<a name="10"><span class="lineNum">      10 </span>                :<span class="lineCov">         18 :     return;</span></a>
+<a name="11"><span class="lineNum">      11 </span>                :            : </a>
+<a name="12"><span class="lineNum">      12 </span>                :<span class="lineCov">        250 :   m_pMemory-&gt;merge(*rhs.m_pMemory);</span></a>
+<a name="13"><span class="lineNum">      13 </span>                :<span class="lineCov">        250 :   rhs.m_pMemory = m_pMemory;</span></a>
+<a name="14"><span class="lineNum">      14 </span>                :            : }</a>
+<a name="15"><span class="lineNum">      15 </span>                :            : </a>
+<a name="16"><span class="lineNum">      16 </span>                :<span class="lineCov">       1272 : node&amp; memory::create_node() {</span></a>
+<a name="17"><span class="lineNum">      17 </span>  [<span class="branchCov" title="Branch 0 was taken 1272 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span><span class="branchCov" title="Branch 2 was taken 1272 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span> :<span class="lineCov">       1272 :   shared_node pNode(new node);</span></a>
+<span class="lineNum">         </span>         <span class="branchCov" title="Branch 4 was taken 1272 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
+<a name="18"><span class="lineNum">      18 </span>        [<span class="branchCov" title="Branch 0 was taken 1272 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">       1272 :   m_nodes.insert(pNode);</span></a>
+<a name="19"><span class="lineNum">      19 </span>                :<span class="lineCov">       2544 :   return *pNode;</span></a>
+<a name="20"><span class="lineNum">      20 </span>                :<span class="lineCov">       1272 : }</span></a>
+<a name="21"><span class="lineNum">      21 </span>                :            : </a>
+<a name="22"><span class="lineNum">      22 </span>                :<span class="lineCov">        250 : void memory::merge(const memory&amp; rhs) {</span></a>
+<a name="23"><span class="lineNum">      23 </span>                :<span class="lineCov">        250 :   m_nodes.insert(rhs.m_nodes.begin(), rhs.m_nodes.end());</span></a>
+<a name="24"><span class="lineNum">      24 </span>                :<span class="lineCov">        250 : }</span></a>
+<a name="25"><span class="lineNum">      25 </span>                :            : }  // namespace detail</a>
+<a name="26"><span class="lineNum">      26 </span>                :            : }  // namespace YAML</a>
 </pre>
       </td>
     </tr>

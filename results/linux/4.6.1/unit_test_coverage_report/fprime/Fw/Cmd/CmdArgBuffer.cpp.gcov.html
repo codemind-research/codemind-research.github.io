@@ -37,12 +37,21 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2024-01-24 11:45:23</td>
+            <td class="headerValue">2024-03-20 10:59:02</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">6</td>
             <td class="headerCovTableEntry">9</td>
             <td class="headerCovTableEntryLo">66.7 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">18</td>
+            <td class="headerCovTableEntryLo">11.1 %</td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -58,53 +67,53 @@
     </tr>
     <tr>
       <td>
-<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>            : #include &lt;Fw/Cmd/CmdArgBuffer.hpp&gt;</a>
-<a name="2"><span class="lineNum">       2 </span>            : #include &lt;Fw/Types/Assert.hpp&gt;</a>
-<a name="3"><span class="lineNum">       3 </span>            : </a>
-<a name="4"><span class="lineNum">       4 </span>            : namespace Fw {</a>
-<a name="5"><span class="lineNum">       5 </span>            : </a>
-<a name="6"><span class="lineNum">       6 </span><span class="lineNoCov">          0 :     CmdArgBuffer::CmdArgBuffer(const U8 *args, NATIVE_UINT_TYPE size) {</span></a>
-<a name="7"><span class="lineNum">       7 </span><span class="lineNoCov">          0 :         SerializeStatus stat = this-&gt;setBuff(args,size);</span></a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineNoCov">          0 :         FW_ASSERT(FW_SERIALIZE_OK == stat,static_cast&lt;NATIVE_INT_TYPE&gt;(stat));</span></a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineNoCov">          0 :     }</span></a>
-<a name="10"><span class="lineNum">      10 </span>            : </a>
-<a name="11"><span class="lineNum">      11 </span><span class="lineCov">       1649 :     CmdArgBuffer::CmdArgBuffer() {</span></a>
-<a name="12"><span class="lineNum">      12 </span><span class="lineCov">       1649 :     }</span></a>
-<a name="13"><span class="lineNum">      13 </span>            : </a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">       1649 :     CmdArgBuffer::~CmdArgBuffer() {</span></a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">       1649 :     }</span></a>
-<a name="16"><span class="lineNum">      16 </span>            : </a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineNoCov">          0 :     CmdArgBuffer::CmdArgBuffer(const CmdArgBuffer&amp; other) : Fw::SerializeBufferBase() {</span></a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineNoCov">          0 :         SerializeStatus stat = this-&gt;setBuff(other.m_bufferData,other.getBuffLength());</span></a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineNoCov">          0 :         FW_ASSERT(FW_SERIALIZE_OK == stat,static_cast&lt;NATIVE_INT_TYPE&gt;(stat));</span></a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineNoCov">          0 :     }</span></a>
-<a name="21"><span class="lineNum">      21 </span>            : </a>
-<a name="22"><span class="lineNum">      22 </span><span class="lineCov">         30 :     CmdArgBuffer&amp; CmdArgBuffer::operator=(const CmdArgBuffer&amp; other) {</span></a>
-<a name="23"><span class="lineNum">      23 </span><span class="lineCov">         30 :         if(this == &amp;other) {</span></a>
-<a name="24"><span class="lineNum">      24 </span><span class="lineNoCov">          0 :             return *this;</span></a>
-<a name="25"><span class="lineNum">      25 </span>            :         }</a>
-<a name="26"><span class="lineNum">      26 </span>            : </a>
-<a name="27"><span class="lineNum">      27 </span><span class="lineCov">         30 :         SerializeStatus stat = this-&gt;setBuff(other.m_bufferData,other.getBuffLength());</span></a>
-<a name="28"><span class="lineNum">      28 </span><span class="lineCov">         30 :         FW_ASSERT(FW_SERIALIZE_OK == stat,static_cast&lt;NATIVE_INT_TYPE&gt;(stat));</span></a>
-<a name="29"><span class="lineNum">      29 </span><span class="lineCov">         30 :         return *this;</span></a>
-<a name="30"><span class="lineNum">      30 </span>            :     }</a>
-<a name="31"><span class="lineNum">      31 </span>            : </a>
-<a name="32"><span class="lineNum">      32 </span><span class="lineCov">       1852 :     NATIVE_UINT_TYPE CmdArgBuffer::getBuffCapacity() const {</span></a>
-<a name="33"><span class="lineNum">      33 </span><span class="lineCov">       1852 :         return sizeof(this-&gt;m_bufferData);</span></a>
-<a name="34"><span class="lineNum">      34 </span>            :     }</a>
-<a name="35"><span class="lineNum">      35 </span>            : </a>
-<a name="36"><span class="lineNum">      36 </span><span class="lineCov">        770 :     const U8* CmdArgBuffer::getBuffAddr() const {</span></a>
-<a name="37"><span class="lineNum">      37 </span><span class="lineCov">        770 :         return this-&gt;m_bufferData;</span></a>
-<a name="38"><span class="lineNum">      38 </span>            :     }</a>
-<a name="39"><span class="lineNum">      39 </span>            : </a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineCov">       7386 :     U8* CmdArgBuffer::getBuffAddr() {</span></a>
-<a name="41"><span class="lineNum">      41 </span><span class="lineCov">       7386 :         return this-&gt;m_bufferData;</span></a>
-<a name="42"><span class="lineNum">      42 </span>            :     }</a>
-<a name="43"><span class="lineNum">      43 </span>            : </a>
-<a name="44"><span class="lineNum">      44 </span>            : }</a>
-<a name="45"><span class="lineNum">      45 </span>            : </a>
+<a name="1"><span class="lineNum">       1 </span>                :            : #include &lt;Fw/Cmd/CmdArgBuffer.hpp&gt;</a>
+<a name="2"><span class="lineNum">       2 </span>                :            : #include &lt;Fw/Types/Assert.hpp&gt;</a>
+<a name="3"><span class="lineNum">       3 </span>                :            : </a>
+<a name="4"><span class="lineNum">       4 </span>                :            : namespace Fw {</a>
+<a name="5"><span class="lineNum">       5 </span>                :            : </a>
+<a name="6"><span class="lineNum">       6 </span>                :<span class="lineNoCov">          0 :     CmdArgBuffer::CmdArgBuffer(const U8 *args, NATIVE_UINT_TYPE size) {</span></a>
+<a name="7"><span class="lineNum">       7 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         SerializeStatus stat = this-&gt;setBuff(args,size);</span></a>
+<a name="8"><span class="lineNum">       8 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :         FW_ASSERT(FW_SERIALIZE_OK == stat,static_cast&lt;NATIVE_INT_TYPE&gt;(stat));</span></a>
+<a name="9"><span class="lineNum">       9 </span>                :<span class="lineNoCov">          0 :     }</span></a>
+<a name="10"><span class="lineNum">      10 </span>                :            : </a>
+<a name="11"><span class="lineNum">      11 </span>                :<span class="lineCov">       1649 :     CmdArgBuffer::CmdArgBuffer() {</span></a>
+<a name="12"><span class="lineNum">      12 </span>                :<span class="lineCov">       1649 :     }</span></a>
+<a name="13"><span class="lineNum">      13 </span>                :            : </a>
+<a name="14"><span class="lineNum">      14 </span>                :<span class="lineCov">       1649 :     CmdArgBuffer::~CmdArgBuffer() {</span></a>
+<a name="15"><span class="lineNum">      15 </span>                :<span class="lineCov">       1649 :     }</span></a>
+<a name="16"><span class="lineNum">      16 </span>                :            : </a>
+<a name="17"><span class="lineNum">      17 </span>                :<span class="lineNoCov">          0 :     CmdArgBuffer::CmdArgBuffer(const CmdArgBuffer&amp; other) : Fw::SerializeBufferBase() {</span></a>
+<a name="18"><span class="lineNum">      18 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :         SerializeStatus stat = this-&gt;setBuff(other.m_bufferData,other.getBuffLength());</span></a>
+<a name="19"><span class="lineNum">      19 </span>  [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :         FW_ASSERT(FW_SERIALIZE_OK == stat,static_cast&lt;NATIVE_INT_TYPE&gt;(stat));</span></a>
+<a name="20"><span class="lineNum">      20 </span>                :<span class="lineNoCov">          0 :     }</span></a>
+<a name="21"><span class="lineNum">      21 </span>                :            : </a>
+<a name="22"><span class="lineNum">      22 </span>                :<span class="lineCov">         30 :     CmdArgBuffer&amp; CmdArgBuffer::operator=(const CmdArgBuffer&amp; other) {</span></a>
+<a name="23"><span class="lineNum">      23 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 30 times"> + </span>]:<span class="lineCov">         30 :         if(this == &amp;other) {</span></a>
+<a name="24"><span class="lineNum">      24 </span>                :<span class="lineNoCov">          0 :             return *this;</span></a>
+<a name="25"><span class="lineNum">      25 </span>                :            :         }</a>
+<a name="26"><span class="lineNum">      26 </span>                :            : </a>
+<a name="27"><span class="lineNum">      27 </span>                :<span class="lineCov">         30 :         SerializeStatus stat = this-&gt;setBuff(other.m_bufferData,other.getBuffLength());</span></a>
+<a name="28"><span class="lineNum">      28 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 30 times"> + </span>]:<span class="lineCov">         30 :         FW_ASSERT(FW_SERIALIZE_OK == stat,static_cast&lt;NATIVE_INT_TYPE&gt;(stat));</span></a>
+<a name="29"><span class="lineNum">      29 </span>                :<span class="lineCov">         30 :         return *this;</span></a>
+<a name="30"><span class="lineNum">      30 </span>                :            :     }</a>
+<a name="31"><span class="lineNum">      31 </span>                :            : </a>
+<a name="32"><span class="lineNum">      32 </span>                :<span class="lineCov">       1852 :     NATIVE_UINT_TYPE CmdArgBuffer::getBuffCapacity() const {</span></a>
+<a name="33"><span class="lineNum">      33 </span>                :<span class="lineCov">       1852 :         return sizeof(this-&gt;m_bufferData);</span></a>
+<a name="34"><span class="lineNum">      34 </span>                :            :     }</a>
+<a name="35"><span class="lineNum">      35 </span>                :            : </a>
+<a name="36"><span class="lineNum">      36 </span>                :<span class="lineCov">        770 :     const U8* CmdArgBuffer::getBuffAddr() const {</span></a>
+<a name="37"><span class="lineNum">      37 </span>                :<span class="lineCov">        770 :         return this-&gt;m_bufferData;</span></a>
+<a name="38"><span class="lineNum">      38 </span>                :            :     }</a>
+<a name="39"><span class="lineNum">      39 </span>                :            : </a>
+<a name="40"><span class="lineNum">      40 </span>                :<span class="lineCov">       7386 :     U8* CmdArgBuffer::getBuffAddr() {</span></a>
+<a name="41"><span class="lineNum">      41 </span>                :<span class="lineCov">       7386 :         return this-&gt;m_bufferData;</span></a>
+<a name="42"><span class="lineNum">      42 </span>                :            :     }</a>
+<a name="43"><span class="lineNum">      43 </span>                :            : </a>
+<a name="44"><span class="lineNum">      44 </span>                :            : }</a>
+<a name="45"><span class="lineNum">      45 </span>                :            : </a>
 </pre>
       </td>
     </tr>

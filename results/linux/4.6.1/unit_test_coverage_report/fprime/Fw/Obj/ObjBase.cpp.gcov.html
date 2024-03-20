@@ -37,12 +37,21 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2024-01-24 11:45:23</td>
+            <td class="headerValue">2024-03-20 10:59:02</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">6</td>
             <td class="headerCovTableEntry">10</td>
             <td class="headerCovTableEntryLo">60.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -58,75 +67,75 @@
     </tr>
     <tr>
       <td>
-<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>            : #include &lt;FpConfig.hpp&gt;</a>
-<a name="2"><span class="lineNum">       2 </span>            : #include &lt;Fw/Obj/ObjBase.hpp&gt;</a>
-<a name="3"><span class="lineNum">       3 </span>            : #include &lt;cstring&gt;</a>
-<a name="4"><span class="lineNum">       4 </span>            : #include &lt;cstdio&gt;</a>
-<a name="5"><span class="lineNum">       5 </span>            : #include &lt;Fw/Types/Assert.hpp&gt;</a>
-<a name="6"><span class="lineNum">       6 </span>            : </a>
-<a name="7"><span class="lineNum">       7 </span>            : namespace Fw {</a>
-<a name="8"><span class="lineNum">       8 </span>            : </a>
-<a name="9"><span class="lineNum">       9 </span>            : #if FW_OBJECT_REGISTRATION == 1</a>
-<a name="10"><span class="lineNum">      10 </span>            :     ObjRegistry* ObjBase::s_objRegistry = nullptr;</a>
-<a name="11"><span class="lineNum">      11 </span>            : #endif</a>
-<a name="12"><span class="lineNum">      12 </span>            : </a>
-<a name="13"><span class="lineNum">      13 </span>            : #if FW_OBJECT_NAMES == 1</a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">       8992 :     ObjBase::ObjBase(const char* objName) {</span></a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">       8992 :         if (nullptr == objName) {</span></a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineCov">       8483 :             this-&gt;setObjName(&quot;NoName&quot;);</span></a>
-<a name="17"><span class="lineNum">      17 </span>            :         } else {</a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">        509 :             this-&gt;setObjName(objName);</span></a>
-<a name="19"><span class="lineNum">      19 </span>            :         }</a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">       8992 :     }</span></a>
-<a name="21"><span class="lineNum">      21 </span>            : #else</a>
-<a name="22"><span class="lineNum">      22 </span>            :     ObjBase::ObjBase(const char* objName) {</a>
-<a name="23"><span class="lineNum">      23 </span>            : </a>
-<a name="24"><span class="lineNum">      24 </span>            :     }</a>
-<a name="25"><span class="lineNum">      25 </span>            : #endif</a>
-<a name="26"><span class="lineNum">      26 </span>            : </a>
-<a name="27"><span class="lineNum">      27 </span><span class="lineCov">       8992 :     void ObjBase::init() {</span></a>
-<a name="28"><span class="lineNum">      28 </span>            : #if FW_OBJECT_REGISTRATION</a>
-<a name="29"><span class="lineNum">      29 </span><span class="lineCov">       8992 :         if (ObjBase::s_objRegistry) {</span></a>
-<a name="30"><span class="lineNum">      30 </span><span class="lineCov">        538 :             ObjBase::s_objRegistry-&gt;regObject(this);</span></a>
-<a name="31"><span class="lineNum">      31 </span>            :         }</a>
-<a name="32"><span class="lineNum">      32 </span>            : #endif</a>
-<a name="33"><span class="lineNum">      33 </span><span class="lineCov">       8992 :     }</span></a>
-<a name="34"><span class="lineNum">      34 </span>            : </a>
-<a name="35"><span class="lineNum">      35 </span><span class="lineCov">       8992 :     ObjBase::~ObjBase() {</span></a>
-<a name="36"><span class="lineNum">      36 </span>            : </a>
-<a name="37"><span class="lineNum">      37 </span><span class="lineCov">       8992 :     }</span></a>
-<a name="38"><span class="lineNum">      38 </span>            : </a>
-<a name="39"><span class="lineNum">      39 </span>            : #if FW_OBJECT_NAMES == 1</a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineNoCov">          0 :     const char* ObjBase::getObjName() {</span></a>
-<a name="41"><span class="lineNum">      41 </span><span class="lineNoCov">          0 :         return this-&gt;m_objName;</span></a>
-<a name="42"><span class="lineNum">      42 </span>            :     }</a>
-<a name="43"><span class="lineNum">      43 </span>            : </a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineCov">      17475 :     void ObjBase::setObjName(const char* name) {</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineCov">      17475 :         strncpy(this-&gt;m_objName, name, sizeof(this-&gt;m_objName));</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">      17475 :         this-&gt;m_objName[sizeof(this-&gt;m_objName)-1] = 0;</span></a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineCov">      17475 :     }</span></a>
-<a name="48"><span class="lineNum">      48 </span>            : #if FW_OBJECT_TO_STRING == 1</a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineNoCov">          0 :     void ObjBase::toString(char* str, NATIVE_INT_TYPE size) {</span></a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineNoCov">          0 :         FW_ASSERT(size &gt; 0);</span></a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineNoCov">          0 :         if (snprintf(str, size, &quot;Obj: %s&quot;,this-&gt;m_objName) &lt; 0) {</span></a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineNoCov">          0 :             str[0] = 0;</span></a>
-<a name="53"><span class="lineNum">      53 </span>            :         }</a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineNoCov">          0 :     }</span></a>
-<a name="55"><span class="lineNum">      55 </span>            : #endif</a>
-<a name="56"><span class="lineNum">      56 </span>            : #endif</a>
-<a name="57"><span class="lineNum">      57 </span>            : </a>
-<a name="58"><span class="lineNum">      58 </span>            : #if FW_OBJECT_REGISTRATION == 1</a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">          8 :     void ObjBase::setObjRegistry(ObjRegistry* reg) {</span></a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">          8 :         ObjBase::s_objRegistry = reg;</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">          8 :     }</span></a>
-<a name="62"><span class="lineNum">      62 </span>            : </a>
-<a name="63"><span class="lineNum">      63 </span><span class="lineCov">          4 :     ObjRegistry::~ObjRegistry() {</span></a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">          4 :     }</span></a>
-<a name="65"><span class="lineNum">      65 </span>            : </a>
-<a name="66"><span class="lineNum">      66 </span>            : #endif</a>
-<a name="67"><span class="lineNum">      67 </span>            : } // Fw</a>
+<a name="1"><span class="lineNum">       1 </span>                :            : #include &lt;FpConfig.hpp&gt;</a>
+<a name="2"><span class="lineNum">       2 </span>                :            : #include &lt;Fw/Obj/ObjBase.hpp&gt;</a>
+<a name="3"><span class="lineNum">       3 </span>                :            : #include &lt;cstring&gt;</a>
+<a name="4"><span class="lineNum">       4 </span>                :            : #include &lt;cstdio&gt;</a>
+<a name="5"><span class="lineNum">       5 </span>                :            : #include &lt;Fw/Types/Assert.hpp&gt;</a>
+<a name="6"><span class="lineNum">       6 </span>                :            : </a>
+<a name="7"><span class="lineNum">       7 </span>                :            : namespace Fw {</a>
+<a name="8"><span class="lineNum">       8 </span>                :            : </a>
+<a name="9"><span class="lineNum">       9 </span>                :            : #if FW_OBJECT_REGISTRATION == 1</a>
+<a name="10"><span class="lineNum">      10 </span>                :            :     ObjRegistry* ObjBase::s_objRegistry = nullptr;</a>
+<a name="11"><span class="lineNum">      11 </span>                :            : #endif</a>
+<a name="12"><span class="lineNum">      12 </span>                :            : </a>
+<a name="13"><span class="lineNum">      13 </span>                :            : #if FW_OBJECT_NAMES == 1</a>
+<a name="14"><span class="lineNum">      14 </span>                :<span class="lineCov">       8992 :     ObjBase::ObjBase(const char* objName) {</span></a>
+<a name="15"><span class="lineNum">      15 </span>        [<span class="branchCov" title="Branch 0 was taken 8483 times"> + </span><span class="branchCov" title="Branch 1 was taken 509 times"> + </span>]:<span class="lineCov">       8992 :         if (nullptr == objName) {</span></a>
+<a name="16"><span class="lineNum">      16 </span>                :<span class="lineCov">       8483 :             this-&gt;setObjName(&quot;NoName&quot;);</span></a>
+<a name="17"><span class="lineNum">      17 </span>                :            :         } else {</a>
+<a name="18"><span class="lineNum">      18 </span>                :<span class="lineCov">        509 :             this-&gt;setObjName(objName);</span></a>
+<a name="19"><span class="lineNum">      19 </span>                :            :         }</a>
+<a name="20"><span class="lineNum">      20 </span>                :<span class="lineCov">       8992 :     }</span></a>
+<a name="21"><span class="lineNum">      21 </span>                :            : #else</a>
+<a name="22"><span class="lineNum">      22 </span>                :            :     ObjBase::ObjBase(const char* objName) {</a>
+<a name="23"><span class="lineNum">      23 </span>                :            : </a>
+<a name="24"><span class="lineNum">      24 </span>                :            :     }</a>
+<a name="25"><span class="lineNum">      25 </span>                :            : #endif</a>
+<a name="26"><span class="lineNum">      26 </span>                :            : </a>
+<a name="27"><span class="lineNum">      27 </span>                :<span class="lineCov">       8992 :     void ObjBase::init() {</span></a>
+<a name="28"><span class="lineNum">      28 </span>                :            : #if FW_OBJECT_REGISTRATION</a>
+<a name="29"><span class="lineNum">      29 </span>        [<span class="branchCov" title="Branch 0 was taken 538 times"> + </span><span class="branchCov" title="Branch 1 was taken 8454 times"> + </span>]:<span class="lineCov">       8992 :         if (ObjBase::s_objRegistry) {</span></a>
+<a name="30"><span class="lineNum">      30 </span>                :<span class="lineCov">        538 :             ObjBase::s_objRegistry-&gt;regObject(this);</span></a>
+<a name="31"><span class="lineNum">      31 </span>                :            :         }</a>
+<a name="32"><span class="lineNum">      32 </span>                :            : #endif</a>
+<a name="33"><span class="lineNum">      33 </span>                :<span class="lineCov">       8992 :     }</span></a>
+<a name="34"><span class="lineNum">      34 </span>                :            : </a>
+<a name="35"><span class="lineNum">      35 </span>                :<span class="lineCov">       8992 :     ObjBase::~ObjBase() {</span></a>
+<a name="36"><span class="lineNum">      36 </span>                :            : </a>
+<a name="37"><span class="lineNum">      37 </span>                :<span class="lineCov">       8992 :     }</span></a>
+<a name="38"><span class="lineNum">      38 </span>                :            : </a>
+<a name="39"><span class="lineNum">      39 </span>                :            : #if FW_OBJECT_NAMES == 1</a>
+<a name="40"><span class="lineNum">      40 </span>                :<span class="lineNoCov">          0 :     const char* ObjBase::getObjName() {</span></a>
+<a name="41"><span class="lineNum">      41 </span>                :<span class="lineNoCov">          0 :         return this-&gt;m_objName;</span></a>
+<a name="42"><span class="lineNum">      42 </span>                :            :     }</a>
+<a name="43"><span class="lineNum">      43 </span>                :            : </a>
+<a name="44"><span class="lineNum">      44 </span>                :<span class="lineCov">      17475 :     void ObjBase::setObjName(const char* name) {</span></a>
+<a name="45"><span class="lineNum">      45 </span>                :<span class="lineCov">      17475 :         strncpy(this-&gt;m_objName, name, sizeof(this-&gt;m_objName));</span></a>
+<a name="46"><span class="lineNum">      46 </span>                :<span class="lineCov">      17475 :         this-&gt;m_objName[sizeof(this-&gt;m_objName)-1] = 0;</span></a>
+<a name="47"><span class="lineNum">      47 </span>                :<span class="lineCov">      17475 :     }</span></a>
+<a name="48"><span class="lineNum">      48 </span>                :            : #if FW_OBJECT_TO_STRING == 1</a>
+<a name="49"><span class="lineNum">      49 </span>                :<span class="lineNoCov">          0 :     void ObjBase::toString(char* str, NATIVE_INT_TYPE size) {</span></a>
+<a name="50"><span class="lineNum">      50 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         FW_ASSERT(size &gt; 0);</span></a>
+<a name="51"><span class="lineNum">      51 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :         if (snprintf(str, size, &quot;Obj: %s&quot;,this-&gt;m_objName) &lt; 0) {</span></a>
+<a name="52"><span class="lineNum">      52 </span>                :<span class="lineNoCov">          0 :             str[0] = 0;</span></a>
+<a name="53"><span class="lineNum">      53 </span>                :            :         }</a>
+<a name="54"><span class="lineNum">      54 </span>                :<span class="lineNoCov">          0 :     }</span></a>
+<a name="55"><span class="lineNum">      55 </span>                :            : #endif</a>
+<a name="56"><span class="lineNum">      56 </span>                :            : #endif</a>
+<a name="57"><span class="lineNum">      57 </span>                :            : </a>
+<a name="58"><span class="lineNum">      58 </span>                :            : #if FW_OBJECT_REGISTRATION == 1</a>
+<a name="59"><span class="lineNum">      59 </span>                :<span class="lineCov">          8 :     void ObjBase::setObjRegistry(ObjRegistry* reg) {</span></a>
+<a name="60"><span class="lineNum">      60 </span>                :<span class="lineCov">          8 :         ObjBase::s_objRegistry = reg;</span></a>
+<a name="61"><span class="lineNum">      61 </span>                :<span class="lineCov">          8 :     }</span></a>
+<a name="62"><span class="lineNum">      62 </span>                :            : </a>
+<a name="63"><span class="lineNum">      63 </span>                :<span class="lineCov">          4 :     ObjRegistry::~ObjRegistry() {</span></a>
+<a name="64"><span class="lineNum">      64 </span>                :<span class="lineCov">          4 :     }</span></a>
+<a name="65"><span class="lineNum">      65 </span>                :            : </a>
+<a name="66"><span class="lineNum">      66 </span>                :            : #endif</a>
+<a name="67"><span class="lineNum">      67 </span>                :            : } // Fw</a>
 </pre>
       </td>
     </tr>
